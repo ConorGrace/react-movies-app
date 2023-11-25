@@ -2,6 +2,7 @@ import React from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import { useQuery } from 'react-query';
 import { getUpcomingMovies } from "../api/tmdb-api";
+import AddToMustWatchIcon from "../components/cardIcons/addToMustWatch";
 
 const UpcomingMoviesPage = (props) => {
   const { data: movies = [] } = useQuery('upcomingMovies', getUpcomingMovies, {
@@ -13,7 +14,7 @@ const UpcomingMoviesPage = (props) => {
       title='Discover Movies'
       movies={movies}
       action={(movie) => {
-        return
+        return <AddToMustWatchIcon movie={movie} />
       }}
     />
   );

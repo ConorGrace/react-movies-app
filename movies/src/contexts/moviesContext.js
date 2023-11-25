@@ -23,6 +23,26 @@ const MoviesContextProvider = (props) => {
     ) )
   };
 
+  const [mustWatch, setMustWatch] = useState( [] )
+  const addToMustWatch = (movie) => {
+    let newMustWatch = [];
+    if (!mustWatch.includes(movie.id)){
+      newMustWatch = [...mustWatch, movie.id];
+      console.log(newMustWatch);
+    }
+    else{
+      newMustWatch = [...mustWatch];
+    }
+    setMustWatch(newMustWatch)
+  };
+
+  // We will use this function in a later section
+  const removeFromMustWatch = (movie) => {
+    setMustWatch( mustWatch.filter(
+      (mId) => mId !== movie.id
+    ) )
+  };
+
   const [myReviews, setMyReviews] = useState( {} ) 
   const addReview = (movie, review) => {
     setMyReviews( {...myReviews, [movie.id]: review } )
@@ -33,9 +53,12 @@ const MoviesContextProvider = (props) => {
     <MoviesContext.Provider
       value={{
         favorites,
+        mustWatch,
         addToFavorites,
         removeFromFavorites,
         addReview,
+        addToMustWatch,
+        removeFromMustWatch
       }}
     >
       {props.children}

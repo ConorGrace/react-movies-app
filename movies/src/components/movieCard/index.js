@@ -72,7 +72,6 @@ export default function MovieCard({ movie, action }) {
       </CardContent>
       <CardActions disableSpacing>
         {action(movie)}
-        <PlaylistAddIcon variant="outlined" size="medium" color="primary"></PlaylistAddIcon>
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
