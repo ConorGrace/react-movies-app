@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PageTemplate from '../components/templateMovieListPage'
+import { useQuery } from 'react-query';
 import { getUpcomingMovies } from "../api/tmdb-api";
 
 const UpcomingMoviesPage = (props) => {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    getUpcomingMovies().then(movies => {
-      setMovies(movies);
-    });
-  }, []);
+  const { data: movies = [] } = useQuery('upcomingMovies', getUpcomingMovies, {
+    staleTime: 30000
+  });
 
   return (
     <PageTemplate
@@ -21,4 +18,5 @@ const UpcomingMoviesPage = (props) => {
     />
   );
 };
+
 export default UpcomingMoviesPage;
