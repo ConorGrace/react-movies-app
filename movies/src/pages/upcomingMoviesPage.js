@@ -15,6 +15,9 @@ const UpcomingMoviesPage = (props) => {
     <PageTemplate
       title='Discover Movies'
       movies={movies}
+      action={(movie) => {
+        return
+      }}
     />
   );
 };
